@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма ввода данных</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #52bde4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        input[type="number"],
+        input[type="text"] {
+            width: calc(50% - 5px);
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 30px;
+            background: #007bff;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .price-range,
+        .reviews-range,
+        .rating-range {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Введите данные для отбора товара</h1>
+        <form id="data-form" onsubmit="sendData(event)">
+            <div class="form-group">
+                <label for="price-range">Ценовой диапазон (например, 1000-5000)</label>
+                <div class="price-range">
+                    <input type="number" id="price-range-min" placeholder="Минимум" min="0">
+                    <input type="number" id="price-range-max" placeholder="Максимум" min="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="text-input">Введите любой текст</label>
+                <input type="text" id="text-input" placeholder="Asus 16 ГБ">
+            </div>
+            <div class="form-group">
+                <label for="reviews-range">Диапазон количества отзывов (например, 10-100)</label>
+                <div class="reviews-range">
+                    <input type="number" id="reviews-range-min" placeholder="Минимум">
+                    <input type="number" id="reviews-range-max" placeholder="Максимум">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="rating-range">Диапазон средней оценки (например, от 0 до 5)</label>
+                <div class="rating-range">
+                    <input type="number" id="rating-range-min" placeholder="Минимум" step="0.1" min="0" max="5">
+                    <input type="number" id="rating-range-max" placeholder="Максимум" step="0.1" min="0" max="5">
+                </div>
+            </div>
+            <button type="submit" id="get_data">Отправить</button>
+        </form>
+    </div>
+    <script>src="https://telegram.org/js/telegram-web-app.js"</script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let get_data = document.getElementById("get_data");
+        tg.expand();
+
+        get_data.addEventListener("click", () => {
+            const priceMin = document.getElementById('price-range-min').value || null;
+            const priceMax = document.getElementById('price-range-max').value || null;
+            const textInput = document.getElementById('text-input').value || null;
+            const reviewsMin = document.getElementById('reviews-range-min').value || null;
+            const reviewsMax = document.getElementById('reviews-range-max').value || null;
+            const ratingMin = document.getElementById('rating-range-min').value || null;
+            const ratingMax = document.getElementById('rating-range-max').value || null;
+    
+            // Создаем объект с данными
+            const formData = {
+                priceRange: {
+                    min: priceMin,
+                    max: priceMax
+                },
+                textInput: textInput,
+                reviewsRange: {
+                    min: reviewsMin,
+                    max: reviewsMax
+                },
+                ratingRange: {
+                    min: ratingMin,
+                    max: ratingMax
+                }
+            };
+    
+            // Выводим данные в консоль
+            tg.sendData(JSON.stringify(formData));
+    
+
+
+            tg.close();
+        });
+
+
+        
+    
+        
+        
+    </script>
+
+</body>
+
+</html>
