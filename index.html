@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Форма ввода данных</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -81,7 +82,7 @@
 <body>
 
     <div class="container">
-        <h1>Введите данные для отбора товара</h1>
+        <h1>Введите данные для отбора товараа</h1>
         <form id="data-form" onsubmit="sendData(event)">
             <div class="form-group">
                 <label for="price-range">Ценовой диапазон (например, 1000-5000)</label>
@@ -111,7 +112,6 @@
             <button type="submit" id="get_data">Отправить</button>
         </form>
     </div>
-    <script>src="https://telegram.org/js/telegram-web-app.js"</script>
     <script>
         let tg = window.Telegram.WebApp;
         let get_data = document.getElementById("get_data");
