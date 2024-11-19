@@ -118,13 +118,13 @@
         tg.expand();
 
         get_data.addEventListener("click", () => {
-            let priceMin = document.getElementById('price-range-min').value || null;
-            let priceMax = document.getElementById('price-range-max').value || null;
+            let priceMin = Number(document.getElementById('price-range-min').value) || null;
+            let priceMax = Number(document.getElementById('price-range-max').value) || null;
             const textInput = document.getElementById('text-input').value || null;
-            let reviewsMin = document.getElementById('reviews-range-min').value || null;
-            let reviewsMax = document.getElementById('reviews-range-max').value || null;
-            let ratingMin = document.getElementById('rating-range-min').value || null;
-            let ratingMax = document.getElementById('rating-range-max').value || null;
+            let reviewsMin = Number(document.getElementById('reviews-range-min').value) || null;
+            let reviewsMax = Number(document.getElementById('reviews-range-max').value) || null;
+            let ratingMin = Number(document.getElementById('rating-range-min').value) || null;
+            let ratingMax = Number(document.getElementById('rating-range-max').value) || null;
     
             // Создаем объект с данными
             const formData = {
