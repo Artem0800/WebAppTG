@@ -118,30 +118,39 @@
         tg.expand();
 
         get_data.addEventListener("click", () => {
-            let priceMin = Number(document.getElementById('price-range-min').value) || null;
-            let priceMax = Number(document.getElementById('price-range-max').value) || null;
-            const textInput = document.getElementById('text-input').value || null;
-            let reviewsMin = Number(document.getElementById('reviews-range-min').value) || null;
-            let reviewsMax = Number(document.getElementById('reviews-range-max').value) || null;
-            let ratingMin = Number(document.getElementById('rating-range-min').value) || null;
-            let ratingMax = Number(document.getElementById('rating-range-max').value) || null;
+            let priceMin = document.getElementById('price-range-min').value ? Number(document.getElementById('price-range-min').value) : undefined;
+            let priceMax = document.getElementById('price-range-max').value ? Number(document.getElementById('price-range-max').value) : undefined;
+            const textInput = document.getElementById('text-input').value ? document.getElementById('text-input').value : undefined;
+            let reviewsMin = document.getElementById('reviews-range-min').value ? Number(document.getElementById('reviews-range-min').value) : undefined;
+            let reviewsMax = document.getElementById('reviews-range-max').value ? Number(document.getElementById('reviews-range-max').value) : undefined;
+            let ratingMin = document.getElementById('rating-range-min').value ? Number(document.getElementById('rating-range-min').value) : undefined;
+            let ratingMax = document.getElementById('rating-range-max').value ? Number(document.getElementById('rating-range-max').value) : undefined;
     
-            // Создаем объект с данными
-            const formData = {
-                priceRange: {
+           // Создаем объект с данными
+            const formData = {};
+            
+            // Добавляем параметры в объект только если они определены
+            if (priceMin !== undefined || priceMax !== undefined) {
+                formData.priceRange = {
                     min: priceMin,
                     max: priceMax
-                },
-                reviewsRange: {
+                };
+            }
+            if (reviewsMin !== undefined || reviewsMax !== undefined) {
+                formData.reviewsRange = {
                     min: reviewsMin,
                     max: reviewsMax
-                },
-                ratingRange: {
+                };
+            }
+            if (ratingMin !== undefined || ratingMax !== undefined) {
+                formData.ratingRange = {
                     min: ratingMin,
                     max: ratingMax
-                },
-                textInput: textInput
-            };
+                };
+            }
+            if (textInput !== undefined) {
+                formData.textInput = textInput;
+            }
     
             // Выводим данные в консоль
             tg.sendData(JSON.stringify(formData));
