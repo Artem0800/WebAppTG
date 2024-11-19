@@ -87,8 +87,8 @@
             <div class="form-group">
                 <label for="price-range">Ценовой диапазон (например, 1000-5000)</label>
                 <div class="price-range">
-                    <input type="number" id="price-range-min" placeholder="Минимум" min="0">
-                    <input type="number" id="price-range-max" placeholder="Максимум" min="0">
+                    <input type="number" id="price-range-min" placeholder="От" min="0">
+                    <input type="number" id="price-range-max" placeholder="До" min="0">
                 </div>
             </div>
             <div class="form-group">
@@ -98,15 +98,15 @@
             <div class="form-group">
                 <label for="reviews-range">Диапазон количества отзывов (например, 10-100)</label>
                 <div class="reviews-range">
-                    <input type="number" id="reviews-range-min" placeholder="Минимум">
-                    <input type="number" id="reviews-range-max" placeholder="Максимум">
+                    <input type="number" id="reviews-range-min" placeholder="От">
+                    <input type="number" id="reviews-range-max" placeholder="До">
                 </div>
             </div>
             <div class="form-group">
                 <label for="rating-range">Диапазон средней оценки (например, от 0 до 5)</label>
                 <div class="rating-range">
-                    <input type="number" id="rating-range-min" placeholder="Минимум" step="0.1" min="0" max="5">
-                    <input type="number" id="rating-range-max" placeholder="Максимум" step="0.1" min="0" max="5">
+                    <input type="number" id="rating-range-min" placeholder="От" step="0.1" min="0" max="5">
+                    <input type="number" id="rating-range-max" placeholder="До" step="0.1" min="0" max="5">
                 </div>
             </div>
             <button type="submit" id="get_data">Отправить</button>
@@ -118,13 +118,13 @@
         tg.expand();
 
         get_data.addEventListener("click", () => {
-            const priceMin = document.getElementById('price-range-min').value || null;
-            const priceMax = document.getElementById('price-range-max').value || null;
+            let priceMin = document.getElementById('price-range-min').value || null;
+            let priceMax = document.getElementById('price-range-max').value || null;
             const textInput = document.getElementById('text-input').value || null;
-            const reviewsMin = document.getElementById('reviews-range-min').value || null;
-            const reviewsMax = document.getElementById('reviews-range-max').value || null;
-            const ratingMin = document.getElementById('rating-range-min').value || null;
-            const ratingMax = document.getElementById('rating-range-max').value || null;
+            let reviewsMin = document.getElementById('reviews-range-min').value || null;
+            let reviewsMax = document.getElementById('reviews-range-max').value || null;
+            let ratingMin = document.getElementById('rating-range-min').value || null;
+            let ratingMax = document.getElementById('rating-range-max').value || null;
     
             // Создаем объект с данными
             const formData = {
